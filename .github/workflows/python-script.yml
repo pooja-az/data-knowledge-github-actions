@@ -1,6 +1,11 @@
 name: Run Python Script
 
+on: 
+  schedule:
+    - cron: '10 14 * * *'
+
 on: [push]
+  branches: main
 
 jobs:
   run-script:
@@ -11,3 +16,4 @@ jobs:
         with:
           python-version: '3.11'
       - run: python scripts/hello_world.py
+    
