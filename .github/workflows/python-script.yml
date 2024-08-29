@@ -8,12 +8,14 @@ on:
 
 jobs:
   run-script:
+    strategy:
+      matrix:
+        version: [3.9 , 3.10 ]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-python@v4
         with:
-          python-version: '3.11'
+          python-version: ${{ matrix.version }}
       - run: python scripts/hello_world.py
         if: ${{ contains(github.event.head_commit.message, ':)') }}
-    
